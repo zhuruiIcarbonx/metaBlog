@@ -141,7 +141,7 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 		}
 
 		if claims, ok := jwtToken.Claims.(jwt.MapClaims); ok && jwtToken.Valid {
-			logger.Log.Info("claims is :%v", claims)
+			logger.Log.Printf("claims is :%v", claims)
 			c.Set("userId", claims["userId"]) // 将claims信息设置到context中，后续可以通过c.Get("user")获取到用户信息
 			c.Set("username", claims["username"])
 			c.Next() // 继续执行后续的请求处理函数
