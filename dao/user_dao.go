@@ -21,7 +21,7 @@ func UserInsert(db *gorm.DB, user *User) error {
 
 	err := db.Debug().Create(user).Error
 	if err != nil {
-		logger.Log.Info("[UserInsert]新增出错！error=%v", err)
+		logger.Log.Printf("[UserInsert]新增出错！error=%v", err)
 	}
 	return err
 
@@ -32,7 +32,7 @@ func UserGet(db *gorm.DB, username string) User {
 
 	user := User{}
 	db.Debug().Where("username = ?", username).First(&user)
-	logger.Log.Info("[UserGet]user=%v", user)
+	logger.Log.Printf("[UserGet]user=%v", user)
 	return user
 
 }
