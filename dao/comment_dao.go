@@ -27,7 +27,7 @@ func CommentList(db *gorm.DB, postId int) []Comment {
 
 	list := []Comment{}
 	db.Debug().Where("post_id = ?", postId).Find(&list).Order(" order by id")
-	logger.Log.Printf("list:%v", list)
+	logger.Log.Info("list:%v", list)
 	return list
 
 }
