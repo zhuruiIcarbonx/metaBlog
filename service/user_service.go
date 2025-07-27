@@ -62,7 +62,7 @@ func UserRegister(c *gin.Context) {
 		return
 	}
 
-	logger.Log.Info("---------------------------user:%v", user)
+	logger.Log.Printf("---------------------------user:%v", user)
 
 	c.JSON(200, result.Sucess())
 

@@ -74,7 +74,7 @@ func PostList(c *gin.Context) {
 		return
 	}
 
-	logger.Log.Info("[PostList]dto---------------------------%v", dto)
+	logger.Log.Printf("[PostList]dto---------------------------%v", dto)
 
 	db := dao.InitDb()
 	post := &dao.Post{
@@ -158,7 +158,7 @@ func PostDelete(c *gin.Context) {
 		c.JSON(200, result.Fail(errorcode.Param_error))
 		return
 	}
-	logger.Log.Info("[PostDelete]idStr---------------------------%v", idStr)
+	logger.Log.Printf("[PostDelete]idStr---------------------------%v", idStr)
 
 	userId := token.GetUserId(c)
 

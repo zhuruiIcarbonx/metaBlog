@@ -52,7 +52,7 @@ func CommentCreate(c *gin.Context) {
 		return
 	}
 
-	logger.Log.Info("comment---------------------------:%v", comment)
+	logger.Log.Printf("comment---------------------------:%v", comment)
 	c.JSON(200, result.Sucess())
 
 }
@@ -67,7 +67,7 @@ func CommentList(c *gin.Context) {
 		return
 	}
 
-	logger.Log.Info("[CommentList]dto---------------------------%v", dto)
+	logger.Log.Printf("[CommentList]dto---------------------------%v", dto)
 
 	db := dao.InitDb()
 	list := dao.CommentList(db, dto.PostId)
