@@ -1,8 +1,6 @@
 package service
 
 import (
-	"fmt"
-	"log"
 	"net/http"
 	"time"
 
@@ -12,6 +10,7 @@ import (
 	"github.com/zhuruiIcarbonx/metaBlog/base/errorcode"
 	"github.com/zhuruiIcarbonx/metaBlog/config"
 	"github.com/zhuruiIcarbonx/metaBlog/dao"
+	"github.com/zhuruiIcarbonx/metaBlog/logger"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )
@@ -63,7 +62,7 @@ func UserRegister(c *gin.Context) {
 		return
 	}
 
-	fmt.Printf("---------------------------user:%v", user)
+	logger.Log.Info("---------------------------user:%v", user)
 
 	c.JSON(200, result.Sucess())
 
@@ -142,7 +141,7 @@ func JWTAuthMiddleware() gin.HandlerFunc {
 		}
 
 		if claims, ok := jwtToken.Claims.(jwt.MapClaims); ok && jwtToken.Valid {
-			log.Printf("claims is :%v", claims)
+			logger.Log.Info("claims is :%v", claims)
 			c.Set("userId", claims["userId"]) // 将claims信息设置到context中，后续可以通过c.Get("user")获取到用户信息
 			c.Set("username", claims["username"])
 			c.Next() // 继续执行后续的请求处理函数

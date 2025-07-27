@@ -1,7 +1,6 @@
 package service
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -9,6 +8,7 @@ import (
 	"github.com/zhuruiIcarbonx/metaBlog/base/errorcode"
 	"github.com/zhuruiIcarbonx/metaBlog/base/token"
 	"github.com/zhuruiIcarbonx/metaBlog/dao"
+	"github.com/zhuruiIcarbonx/metaBlog/logger"
 	"gorm.io/gorm"
 )
 
@@ -59,7 +59,7 @@ func PostCreate(c *gin.Context) {
 		return
 	}
 
-	fmt.Printf("---------------------------post:%v", post)
+	logger.Log.Info("---------------------------post:%v", post)
 	c.JSON(200, result.Sucess())
 
 }
@@ -74,7 +74,7 @@ func PostList(c *gin.Context) {
 		return
 	}
 
-	fmt.Printf("[PostList]dto---------------------------%v", dto)
+	logger.Log.Info("[PostList]dto---------------------------%v", dto)
 
 	db := dao.InitDb()
 	post := &dao.Post{
@@ -108,7 +108,7 @@ func PostUpdate(c *gin.Context) {
 		c.JSON(200, result.FailWeb(400, err.Error()))
 		return
 	}
-	fmt.Printf("[PostList]dto---------------------------%v", dto)
+	logger.Log.Info("[PostList]dto---------------------------%v", dto)
 
 	userId := token.GetUserId(c)
 
@@ -158,7 +158,7 @@ func PostDelete(c *gin.Context) {
 		c.JSON(200, result.Fail(errorcode.Param_error))
 		return
 	}
-	fmt.Printf("[PostList]idStr---------------------------%v", idStr)
+	logger.Log.Info("[PostList]idStr---------------------------%v", idStr)
 
 	userId := token.GetUserId(c)
 

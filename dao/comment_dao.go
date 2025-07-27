@@ -1,8 +1,7 @@
 package dao
 
 import (
-	"log"
-
+	"github.com/zhuruiIcarbonx/metaBlog/logger"
 	"gorm.io/gorm"
 )
 
@@ -28,7 +27,7 @@ func CommentList(db *gorm.DB, postId int) []Comment {
 
 	list := []Comment{}
 	db.Debug().Where("post_id = ?", postId).Find(&list).Order(" order by id")
-	log.Printf("list:%v", list)
+	logger.Log.Info("list:%v", list)
 	return list
 
 }

@@ -1,8 +1,7 @@
 package dao
 
 import (
-	"log"
-
+	"github.com/zhuruiIcarbonx/metaBlog/logger"
 	"gorm.io/gorm"
 )
 
@@ -22,7 +21,7 @@ func UserInsert(db *gorm.DB, user *User) error {
 
 	err := db.Debug().Create(user).Error
 	if err != nil {
-		log.Printf("[UserInsert]新增出错！error=%v", err)
+		logger.Log.Info("[UserInsert]新增出错！error=%v", err)
 	}
 	return err
 
@@ -33,7 +32,7 @@ func UserGet(db *gorm.DB, username string) User {
 
 	user := User{}
 	db.Debug().Where("username = ?", username).First(&user)
-	log.Printf("[UserGet]user=%v", user)
+	logger.Log.Info("[UserGet]user=%v", user)
 	return user
 
 }

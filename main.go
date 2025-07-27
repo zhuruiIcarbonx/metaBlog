@@ -1,15 +1,13 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/gin-gonic/gin"
+	"github.com/zhuruiIcarbonx/metaBlog/logger"
 	"github.com/zhuruiIcarbonx/metaBlog/service"
 )
 
 func main() {
 
-	fmt.Println("new project")
 	router := gin.Default()
 
 	//注册
@@ -19,7 +17,7 @@ func main() {
 
 	routerGroup := router.Group("/blog/v1")
 	routerGroup.Use(service.JWTAuthMiddleware())
-	fmt.Println("---------------------------")
+	logger.Log.Info("---------------------------")
 
 	//创建文章
 	routerGroup.POST("/post/create", service.PostCreate)

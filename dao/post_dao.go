@@ -1,8 +1,7 @@
 package dao
 
 import (
-	"log"
-
+	"github.com/zhuruiIcarbonx/metaBlog/logger"
 	"gorm.io/gorm"
 )
 
@@ -37,7 +36,7 @@ func PostList(db *gorm.DB, post *Post) []Post {
 		db.Where("user_id = ?", post.UserId)
 	}
 	db.Debug().Find(&list)
-	log.Printf("list:%v", list)
+	logger.Log.Info("list:%v", list)
 	return list
 
 }
@@ -46,7 +45,7 @@ func PostOne(db *gorm.DB, id int) Post {
 
 	post := Post{}
 	db.Debug().Where("id = ?", id).Preload("User").Preload("Comments").First(&post)
-	log.Printf("post:%v", post)
+	logger.Log.Info("post:%v", post)
 	return post
 
 }

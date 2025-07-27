@@ -1,13 +1,12 @@
 package service
 
 import (
-	"fmt"
-
 	"github.com/gin-gonic/gin"
 	"github.com/zhuruiIcarbonx/metaBlog/base"
 	"github.com/zhuruiIcarbonx/metaBlog/base/errorcode"
 	"github.com/zhuruiIcarbonx/metaBlog/base/token"
 	"github.com/zhuruiIcarbonx/metaBlog/dao"
+	"github.com/zhuruiIcarbonx/metaBlog/logger"
 	"gorm.io/gorm"
 )
 
@@ -53,7 +52,7 @@ func CommentCreate(c *gin.Context) {
 		return
 	}
 
-	fmt.Printf("comment---------------------------:%v", comment)
+	logger.Log.Info("comment---------------------------:%v", comment)
 	c.JSON(200, result.Sucess())
 
 }
@@ -68,7 +67,7 @@ func CommentList(c *gin.Context) {
 		return
 	}
 
-	fmt.Printf("[CommentList]dto---------------------------%v", dto)
+	logger.Log.Info("[CommentList]dto---------------------------%v", dto)
 
 	db := dao.InitDb()
 	list := dao.CommentList(db, dto.PostId)
