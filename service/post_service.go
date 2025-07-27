@@ -108,7 +108,7 @@ func PostUpdate(c *gin.Context) {
 		c.JSON(200, result.FailWeb(400, err.Error()))
 		return
 	}
-	logger.Log.Info("[PostList]dto---------------------------%v", dto)
+	logger.Log.Info("[PostUpdate]dto---------------------------%v", dto)
 
 	userId := token.GetUserId(c)
 
@@ -158,7 +158,7 @@ func PostDelete(c *gin.Context) {
 		c.JSON(200, result.Fail(errorcode.Param_error))
 		return
 	}
-	logger.Log.Info("[PostList]idStr---------------------------%v", idStr)
+	logger.Log.Info("[PostDelete]idStr---------------------------%v", idStr)
 
 	userId := token.GetUserId(c)
 

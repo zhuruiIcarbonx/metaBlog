@@ -14,6 +14,8 @@ metaBlog/base/*   基础配置文件,与具体业务逻辑无关
 metaBlog/base/result.go   定义和统一返回值格式
 metaBlog/base/errorcode/errorcode.go   定义错误码
 metaBlog/base/token/token.go    解析获取token参数
+metaBlog/logger/logger.go    用于日志输出
+metaBlog/logs/*    输出的日志记录
 
 2.接口说明
 
